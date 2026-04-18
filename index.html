@@ -3,45 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Altivra — The pilot's operating system</title>
-  <meta name="description" content="Altivra unifies roster, logbook, rest, and pay management on iPad. Built by a commercial pilot, for modern aviators." />
+  <title>Altivra — The pilot's operating system for iPad</title>
+  <meta name="description" content="Roster, logbook, fatigue, and pay — unified on iPad. Altivra is the operating system for the modern flight deck, built by a commercial pilot." />
   <meta name="theme-color" content="#0B1E34" />
+  <meta name="color-scheme" content="dark" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Altivra — The pilot's operating system" />
-  <meta property="og:description" content="Roster, logbook, rest, and pay. Finally in sync. Designed for iPad." />
+  <meta property="og:title" content="Altivra — The pilot's operating system for iPad" />
+  <meta property="og:description" content="Roster, logbook, rest, and pay — unified on iPad. Built by a commercial pilot." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://altivra.app" />
+  <meta property="og:image" content="https://altivra.app/photos/hero.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Altivra — The pilot's operating system" />
+  <meta name="twitter:description" content="Every flight. Every rest. In one iPad." />
+  <meta name="twitter:image" content="https://altivra.app/photos/hero.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="photos/hero.jpg" />
+
   <style>
-    /* ─────────────  DESIGN TOKENS  ──────────── */
+    /* ═══════════════════════  DESIGN TOKENS  ═══════════════════════ */
     :root {
-      --midnight:      #0B1E34;
-      --midnight-deep: #06131F;
-      --runway:        #182A3F;
-      --runway-soft:   #1F3650;
-      --sky:           #2F80ED;
-      --sky-bright:    #4C9AFF;
-      --ivory:         #F4F6F9;
-      --mist:          #B8C5D6;
-      --muted:         #7A8CA3;
-      --divider:       rgba(255,255,255,0.08);
-      --radius:        18px;
-      --spacing:       20px;
-      --maxw:          1120px;
+      --midnight:       #0B1E34;
+      --midnight-deep:  #06131F;
+      --runway:         #182A3F;
+      --runway-soft:    #1F3650;
+      --sky:            #2F80ED;
+      --sky-bright:     #4C9AFF;
+      --sky-glow:       rgba(47,128,237,0.25);
+      --ivory:          #F4F6F9;
+      --mist:           #B8C5D6;
+      --muted:          #7A8CA3;
+      --divider:        rgba(255,255,255,0.08);
+      --divider-strong: rgba(255,255,255,0.14);
+      --radius:         18px;
+      --radius-sm:      12px;
+      --radius-lg:      24px;
+      --maxw:           1200px;
+      --maxw-narrow:    880px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    *:focus-visible { outline: 2px solid var(--sky-bright); outline-offset: 3px; border-radius: 6px; }
 
+    html { scroll-behavior: smooth; }
     html, body {
       background: var(--midnight-deep);
       color: var(--ivory);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-weight: 400;
-      line-height: 1.55;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
@@ -49,128 +74,39 @@
 
     body {
       min-height: 100vh;
-      position: relative;
       background:
-        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(47,128,237,0.25), transparent 60%),
-        radial-gradient(ellipse 60% 50% at 90% 110%, rgba(47,128,237,0.10), transparent 70%),
-        linear-gradient(180deg, var(--midnight) 0%, var(--midnight-deep) 100%);
+        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(47,128,237,0.08), transparent 70%),
+        linear-gradient(180deg, var(--midnight-deep) 0%, #04101B 100%);
     }
 
-    /* ─────────────  HORIZON LINES  ───────────── */
-    .horizon {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.35;
-      background-image:
-        linear-gradient(to bottom,
-          transparent 0%, transparent 19.9%,
-          rgba(255,255,255,0.04) 20%, rgba(255,255,255,0.04) 20.1%,
-          transparent 20.2%, transparent 39.9%,
-          rgba(255,255,255,0.03) 40%, rgba(255,255,255,0.03) 40.1%,
-          transparent 40.2%, transparent 59.9%,
-          rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.02) 60.1%,
-          transparent 60.2%, transparent 100%);
-    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
 
-    /* ─────────────  LAYOUT  ───────────── */
-    .shell {
-      position: relative;
-      z-index: 1;
+    /* ═══════════════════════  LAYOUT PRIMITIVES  ═══════════════════════ */
+    .container {
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 28px;
     }
-
-    /* ─────────────  NAV  ──────────── */
-    nav {
-      padding: 28px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 20px;
-      letter-spacing: 0.18em;
-      color: var(--ivory);
-      text-decoration: none;
-    }
-
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: linear-gradient(135deg, var(--sky) 0%, var(--sky-bright) 100%);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 6px 18px rgba(47,128,237,0.35);
-    }
-
-    .brand-mark svg { width: 16px; height: 16px; color: #fff; }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--mist);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--ivory); }
-
-    .nav-cta {
-      padding: 10px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--divider);
-      color: var(--ivory);
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all .2s;
-    }
-    .nav-cta:hover {
-      border-color: var(--sky);
-      background: rgba(47,128,237,0.08);
-    }
-
-    @media (max-width: 720px) {
-      .nav-links a:not(.nav-cta) { display: none; }
-    }
-
-    /* ─────────────  HERO  ──────────── */
-    .hero {
-      padding: clamp(80px, 14vh, 160px) 0 clamp(60px, 10vh, 120px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    .container-narrow {
+      max-width: var(--maxw-narrow);
+      margin: 0 auto;
+      padding: 0 28px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 999px;
       background: rgba(47,128,237,0.10);
-      border: 1px solid rgba(47,128,237,0.25);
+      border: 1px solid rgba(47,128,237,0.28);
       color: var(--sky-bright);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
-      letter-spacing: 0.04em;
-      margin-bottom: 28px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .eyebrow .pulse {
@@ -187,54 +123,214 @@
       100% { box-shadow: 0 0 0 0 rgba(76,154,255,0); }
     }
 
-    h1 {
+    .section-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(44px, 8vw, 88px);
+      font-size: clamp(32px, 5vw, 52px);
       font-weight: 600;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-      max-width: 900px;
-      margin-bottom: 24px;
-      background: linear-gradient(180deg, #FFFFFF 0%, #B8C5D6 100%);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin: 20px 0 16px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #C5D0DF 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    h1 .accent {
+    .section-lede {
+      font-size: clamp(16px, 1.5vw, 18px);
+      color: var(--mist);
+      max-width: 640px;
+    }
+
+    .accent {
       background: linear-gradient(135deg, var(--sky-bright) 0%, var(--sky) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .subcopy {
-      font-size: clamp(16px, 1.6vw, 19px);
-      color: var(--mist);
-      max-width: 620px;
-      margin-bottom: 44px;
-      font-weight: 400;
+    /* ═══════════════════════  NAV  ═══════════════════════ */
+    .nav-outer {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      transition: background .3s, backdrop-filter .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav-outer.scrolled {
+      background: rgba(6,19,31,0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--divider);
     }
 
-    /* ─────────────  FORM  ──────────── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 0.18em;
+      color: var(--ivory);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--sky) 0%, var(--sky-bright) 100%);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 20px rgba(47,128,237,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .brand-mark svg { width: 18px; height: 18px; color: #fff; }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--mist);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--ivory); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--sky-bright) 0%, var(--sky) 100%);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(47,128,237,0.40);
+      font-family: inherit;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(47,128,237,0.55);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--divider-strong);
+      color: var(--ivory);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--sky);
+      background: rgba(47,128,237,0.08);
+    }
+
+    @media (max-width: 720px) {
+      .nav-links a:not(.btn-ghost):not(.btn-primary) { display: none; }
+    }
+
+    /* ═══════════════════════  HERO  ═══════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(11,30,52,0.55) 0%, rgba(6,19,31,0.85) 60%, #04101B 100%),
+        linear-gradient(120deg, #0B1E34 0%, #1F3650 50%, #0B1E34 100%);
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.55;
+      filter: saturate(1.05);
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% 40%, transparent, rgba(6,19,31,0.5)),
+        linear-gradient(180deg, transparent 40%, rgba(6,19,31,0.95) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    h1.hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(44px, 8vw, 96px);
+      font-weight: 600;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      margin: 28px 0 24px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #B8C5D6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subcopy {
+      font-size: clamp(17px, 1.8vw, 20px);
+      color: var(--mist);
+      max-width: 620px;
+      margin: 0 auto 40px;
+    }
+
     .waitlist {
       display: flex;
       gap: 10px;
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
+      margin: 0 auto;
       padding: 6px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid var(--divider);
+      border: 1px solid var(--divider-strong);
       border-radius: 999px;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       transition: border-color .2s, background .2s;
     }
     .waitlist:focus-within {
-      border-color: rgba(47,128,237,0.5);
-      background: rgba(47,128,237,0.04);
+      border-color: rgba(47,128,237,0.6);
+      background: rgba(47,128,237,0.06);
     }
-
     .waitlist input {
       flex: 1;
       background: transparent;
@@ -243,11 +339,10 @@
       color: var(--ivory);
       font-family: inherit;
       font-size: 15px;
-      padding: 0 18px;
+      padding: 0 16px;
       min-width: 0;
     }
     .waitlist input::placeholder { color: var(--muted); }
-
     .waitlist button {
       border: none;
       background: linear-gradient(135deg, var(--sky-bright) 0%, var(--sky) 100%);
@@ -260,194 +355,891 @@
       cursor: pointer;
       white-space: nowrap;
       transition: transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 16px rgba(47,128,237,0.35);
+      box-shadow: 0 4px 16px rgba(47,128,237,0.40);
     }
     .waitlist button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 22px rgba(47,128,237,0.5);
+      box-shadow: 0 6px 22px rgba(47,128,237,0.55);
     }
-    .waitlist button:active { transform: translateY(0); }
 
-    .fineprint {
+    .hero-fineprint {
       color: var(--muted);
       font-size: 13px;
       margin-top: 18px;
     }
-
-    .success {
+    .hero-success {
       color: var(--sky-bright);
       font-weight: 500;
       font-size: 15px;
-      margin-top: 12px;
+      margin-top: 16px;
       display: none;
     }
 
-    /* ─────────────  TRUST LINE  ──────────── */
-    .trust {
-      margin-top: 80px;
-      padding-top: 40px;
-      border-top: 1px solid var(--divider);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      max-width: 860px;
-      width: 100%;
-    }
-
-    .trust-item {
-      text-align: center;
-    }
-    .trust-item .label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .trust-item .value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--ivory);
-    }
-
     @media (max-width: 640px) {
-      .trust { grid-template-columns: repeat(2, 1fr); gap: 24px; }
       .waitlist { flex-direction: column; border-radius: 18px; padding: 10px; }
       .waitlist input { padding: 14px 18px; }
       .waitlist button { padding: 14px 22px; }
     }
 
-    /* ─────────────  FOOTER  ───────────── */
-    footer {
-      padding: 48px 0 32px;
+    /* ═══════════════════════  TRUST BAR  ═══════════════════════ */
+    .trust {
+      padding: 40px 0;
       border-top: 1px solid var(--divider);
-      margin-top: 80px;
+      border-bottom: 1px solid var(--divider);
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .trust-item { text-align: center; }
+    .trust-item .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .trust-item .value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ivory);
+    }
+    @media (max-width: 640px) {
+      .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
+
+    /* ═══════════════════════  SECTION SHELL  ═══════════════════════ */
+    section.section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 64px;
+    }
+
+    /* ═══════════════════════  PROBLEM SECTION  ═══════════════════════ */
+    .problem {
+      background: linear-gradient(180deg, transparent 0%, rgba(24,42,63,0.3) 50%, transparent 100%);
+    }
+    .problem-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .problem-item {
+      padding: 20px 22px;
+      background: rgba(24,42,63,0.4);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-sm);
+      color: var(--mist);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .problem-item::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════  FEATURES GRID  ═══════════════════════ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .feature {
+      padding: 32px 28px;
+      background: linear-gradient(180deg, rgba(24,42,63,0.5) 0%, rgba(24,42,63,0.25) 100%);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .feature:hover {
+      border-color: rgba(47,128,237,0.4);
+      transform: translateY(-2px);
+    }
+    .feature::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(76,154,255,0.4), transparent);
+    }
+    .feature-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(47,128,237,0.25) 0%, rgba(47,128,237,0.05) 100%);
+      border: 1px solid rgba(47,128,237,0.3);
+      display: grid;
+      place-items: center;
+      color: var(--sky-bright);
+      margin-bottom: 20px;
+    }
+    .feature-icon svg { width: 22px; height: 22px; }
+    .feature h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 10px;
+      color: var(--ivory);
+    }
+    .feature p {
+      color: var(--mist);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ═══════════════════════  PILOT SECTION (cockpit photo)  ═══════════════════════ */
+    .pilot-section {
+      padding: clamp(80px, 10vw, 140px) 0;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .pilot-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(6,19,31,0.95) 0%, rgba(6,19,31,0.65) 50%, rgba(6,19,31,0.35) 100%),
+        linear-gradient(180deg, rgba(6,19,31,0.65) 0%, rgba(6,19,31,0.85) 100%),
+        var(--midnight);
+    }
+    .pilot-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.65;
+    }
+    .pilot-content {
+      max-width: 620px;
+    }
+    .pilot-quote {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(22px, 2.6vw, 30px);
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      color: var(--ivory);
+      margin: 24px 0 28px;
+    }
+    .pilot-attribution {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--mist);
+      font-size: 14px;
+    }
+    .pilot-attribution .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--sky-bright);
+    }
+
+    /* ═══════════════════════  GALLERY (pilot's view)  ═══════════════════════ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 40px;
+    }
+    .gallery figure {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, #182A3F 0%, #0B1E34 100%);
+    }
+    .gallery figure:first-child { aspect-ratio: 4 / 5; }
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+    }
+    .gallery figure:hover img { transform: scale(1.04); }
+    .gallery figcaption {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      color: rgba(255,255,255,0.85);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(6,19,31,0.55);
+      padding: 4px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    @media (max-width: 720px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery figure:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+    }
+
+    /* ═══════════════════════  PRICING  ═══════════════════════ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .price-card {
+      padding: 36px 32px;
+      background: linear-gradient(180deg, rgba(24,42,63,0.5) 0%, rgba(24,42,63,0.2) 100%);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+    }
+    .price-card.featured {
+      border-color: rgba(47,128,237,0.5);
+      background:
+        linear-gradient(180deg, rgba(47,128,237,0.10) 0%, rgba(24,42,63,0.25) 100%);
+      box-shadow: 0 20px 50px -20px rgba(47,128,237,0.35);
+      position: relative;
+    }
+    .price-card.featured::before {
+      content: 'RECOMMENDED';
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--sky-bright) 0%, var(--sky) 100%);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 5px 14px;
+      border-radius: 999px;
+    }
+    .price-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 8px;
+    }
+    .price-card .tagline {
+      color: var(--mist);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .price-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 24px;
+      color: var(--ivory);
+    }
+    .price-amount .num {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+    .price-amount .unit {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .price-features {
+      list-style: none;
+      margin: 0 0 28px;
+      padding: 0;
+      flex: 1;
+    }
+    .price-features li {
+      color: var(--mist);
+      font-size: 15px;
+      padding: 9px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      border-bottom: 1px solid var(--divider);
+    }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      margin-top: 5px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14' fill='none' stroke='%234C9AFF' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='2 7 6 11 12 4'/></svg>");
+      background-repeat: no-repeat;
+    }
+
+    /* ═══════════════════════  FAQ  ═══════════════════════ */
+    .faq-list {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-item {
+      background: rgba(24,42,63,0.3);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .faq-item summary {
+      padding: 22px 24px;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ivory);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      gap: 20px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '';
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%237A8CA3' stroke-width='2' stroke-linecap='round'><path d='M4 6 L8 10 L12 6'/></svg>");
+      transition: transform .25s;
+    }
+    .faq-item[open] summary::after { transform: rotate(180deg); }
+    .faq-item[open] summary { color: var(--ivory); border-bottom: 1px solid var(--divider); }
+    .faq-body {
+      padding: 18px 24px 24px;
+      color: var(--mist);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ═══════════════════════  CLOSING CTA  ═══════════════════════ */
+    .cta-final {
+      position: relative;
+      padding: clamp(100px, 12vw, 180px) 0;
+      overflow: hidden;
+      isolation: isolate;
+      text-align: center;
+    }
+    .cta-final-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(135deg, #0B1E34 0%, #1F3650 100%);
+    }
+    .cta-final-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.55;
+    }
+    .cta-final-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, transparent, rgba(6,19,31,0.55)),
+        linear-gradient(180deg, rgba(6,19,31,0.65) 0%, rgba(6,19,31,0.92) 100%);
+      pointer-events: none;
+    }
+    .cta-final h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      max-width: 800px;
+      margin: 0 auto 16px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #B8C5D6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cta-final p {
+      font-size: clamp(16px, 1.6vw, 18px);
+      color: var(--mist);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    /* ═══════════════════════  FOOTER  ═══════════════════════ */
+    footer {
+      padding: 60px 0 40px;
+      border-top: 1px solid var(--divider);
       color: var(--muted);
       font-size: 13px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand-col { max-width: 320px; }
+    .footer-brand-col p {
+      color: var(--mist);
+      font-size: 14px;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      color: var(--ivory);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--mist);
+      text-decoration: none;
+      padding: 6px 0;
+      font-size: 14px;
+      transition: color .15s;
+    }
+    .footer-col a:hover { color: var(--ivory); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--divider);
+      padding-top: 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
     }
-
-    footer a {
-      color: var(--mist);
-      text-decoration: none;
-      margin-left: 20px;
+    .footer-bottom .motto {
+      font-style: italic;
+      color: var(--muted);
     }
-    footer a:hover { color: var(--ivory); }
 
-    /* ─────────────  ENTRANCE  ───────────── */
-    .fade-in {
+    @media (max-width: 720px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-brand-col { grid-column: 1 / -1; }
+    }
+
+    /* ═══════════════════════  SCROLL FADE-IN  ═══════════════════════ */
+    .reveal {
       opacity: 0;
-      transform: translateY(14px);
-      animation: fadeIn .9s ease-out forwards;
+      transform: translateY(20px);
+      transition: opacity .8s ease-out, transform .8s ease-out;
     }
-    .fade-in.d1 { animation-delay: .05s; }
-    .fade-in.d2 { animation-delay: .15s; }
-    .fade-in.d3 { animation-delay: .28s; }
-    .fade-in.d4 { animation-delay: .42s; }
-    .fade-in.d5 { animation-delay: .58s; }
-
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
-  <div class="horizon" aria-hidden="true"></div>
 
-  <div class="shell">
-
+<!-- ═══════════════════════  NAV  ═══════════════════════ -->
+<div class="nav-outer" id="nav">
+  <div class="container">
     <nav>
-      <a href="/" class="brand fade-in">
+      <a href="#" class="brand" aria-label="Altivra home">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2 L19 19 L12 15 L5 19 Z" />
           </svg>
         </span>
         ALTIVRA
       </a>
-      <div class="nav-links fade-in d1">
+      <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
-        <a href="mailto:contact@altivra.io">Contact</a>
-        <a href="#waitlist" class="nav-cta">Join beta</a>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist" class="btn-primary">Request access</a>
       </div>
     </nav>
+  </div>
+</div>
 
-    <section class="hero">
+<!-- ═══════════════════════  HERO  ═══════════════════════ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <img src="photos/hero.jpg" alt="" loading="eager" fetchpriority="high" />
+  </div>
+  <div class="hero-vignette" aria-hidden="true"></div>
 
-      <span class="eyebrow fade-in">
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow">
         <span class="pulse"></span>
-        Private beta · 2026
+        Private beta · Fall 2026
       </span>
 
-      <h1 class="fade-in d2">
+      <h1 class="hero-title">
         Every flight.<br/>
         Every rest.<br/>
         <span class="accent">In one iPad.</span>
       </h1>
 
-      <p class="subcopy fade-in d3">
-        Roster, logbook, fatigue, and pay — finally in sync. Altivra is the operating system for the modern flight deck, designed for iPad and built by a commercial pilot.
+      <p class="hero-subcopy">
+        The operating system for the modern flight deck. Roster, logbook, fatigue, and pay — finally in sync. Designed for iPad. Built by a commercial pilot.
       </p>
 
-      <form id="waitlist" class="waitlist fade-in d4" novalidate>
-        <input
-          type="email"
-          name="email"
-          placeholder="captain@yourairline.com"
-          autocomplete="email"
-          required
-          aria-label="Your email address"
-        />
+      <form id="waitlist" class="waitlist" novalidate>
+        <input type="email" name="email" placeholder="captain@yourairline.com" autocomplete="email" required aria-label="Your email address" />
         <button type="submit">Request access</button>
       </form>
 
-      <p class="fineprint fade-in d4">Beta seats limited. No spam — one email when your seat opens.</p>
-      <p class="success" id="success">You're on the list. We'll be in touch.</p>
+      <p class="hero-fineprint">Beta seats limited. No spam — one email when your seat opens.</p>
+      <p class="hero-success" id="success">You're on the list. We'll be in touch soon.</p>
+    </div>
+  </div>
+</section>
 
-      <div class="trust fade-in d5">
-        <div class="trust-item">
-          <div class="label">Platform</div>
-          <div class="value">iPad · EFB-ready</div>
-        </div>
-        <div class="trust-item">
-          <div class="label">Modules</div>
-          <div class="value">6 integrated tools</div>
-        </div>
-        <div class="trust-item">
-          <div class="label">Roster</div>
-          <div class="value">Auto-import</div>
-        </div>
-        <div class="trust-item">
-          <div class="label">Built by</div>
-          <div class="value">Commercial pilots</div>
-        </div>
+<!-- ═══════════════════════  TRUST BAR  ═══════════════════════ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="label">Platform</div>
+        <div class="value">iPad · EFB-ready</div>
       </div>
-
-    </section>
-
-    <footer>
-      <div>© 2026 Altivra · Elevated truth for modern aviators.</div>
-      <div>
-        <a href="mailto:contact@altivra.io">contact@altivra.io</a>
-        <a href="mailto:support@altivra.io">Support</a>
-        <a href="mailto:legal@altivra.io">Legal</a>
-        <a href="mailto:dev@altivra.io">Dev</a>
+      <div class="trust-item">
+        <div class="label">Modules</div>
+        <div class="value">6 integrated tools</div>
       </div>
-    </footer>
+      <div class="trust-item">
+        <div class="label">Roster</div>
+        <div class="value">Auto-import</div>
+      </div>
+      <div class="trust-item">
+        <div class="label">Built by</div>
+        <div class="value">A commercial pilot</div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ═══════════════════════  PROBLEM  ═══════════════════════ -->
+<section class="section problem">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">The status quo</span>
+      <h2 class="section-title">Your flying life lives in <span class="accent">six different places.</span></h2>
+      <p class="section-lede">Paper, PDFs, crew portals, spreadsheets, sticky notes. Information scattered across apps that don't know each other exist. Every pilot has built this mess. Altivra ends it.</p>
+    </div>
+
+    <div class="problem-list reveal">
+      <div class="problem-item">Paper logbook you're afraid to lose</div>
+      <div class="problem-item">Airline crew portal for your roster</div>
+      <div class="problem-item">A spreadsheet that tracks your fatigue</div>
+      <div class="problem-item">A pay calculator you built yourself</div>
+      <div class="problem-item">Browser tabs for weather, NOTAMs, fuel</div>
+      <div class="problem-item">Notes app for layover recommendations</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════  FEATURES  ═══════════════════════ -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">What's inside</span>
+      <h2 class="section-title">One app. <span class="accent">Six integrated tools.</span></h2>
+      <p class="section-lede">Every module knows about every other. Your roster feeds your rest tracker. Your logbook feeds your pay. Your fatigue feeds your briefing. Finally in sync.</p>
+    </div>
+
+    <div class="features-grid">
+      <article class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3 L3 8 L12 13 L21 8 Z"/>
+            <path d="M3 14 L12 19 L21 14"/>
+          </svg>
+        </div>
+        <h3>Briefing Room</h3>
+        <p>Weather, NOTAMs, route, and crew briefing for every sector — auto-pulled the night before. Walk to the plane already prepared.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M3 10 L21 10"/>
+            <path d="M8 5 V3"/>
+            <path d="M16 5 V3"/>
+          </svg>
+        </div>
+        <h3>Wingman</h3>
+        <p>Smart roster that auto-imports from any airline system. Duty, rest, and block hours at a glance. Tomorrow's pairing always one tap away.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7 V12 L15 15"/>
+          </svg>
+        </div>
+        <h3>Rest &amp; Fatigue</h3>
+        <p>FRMS-aware tracking with a circadian-timed layover advisor. Know when you're safe to fly, and when your body needs to sleep.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4 H18 A2 2 0 0 1 20 6 V20 A2 2 0 0 1 18 22 H6 A2 2 0 0 1 4 20 Z"/>
+            <path d="M4 4 V2"/>
+            <path d="M8 9 H16"/>
+            <path d="M8 13 H16"/>
+            <path d="M8 17 H12"/>
+          </svg>
+        </div>
+        <h3>Digital Logbook</h3>
+        <p>Every flight, every hour, every airport — visualized on a world map. CSV import from anything. PDF export that looks official.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 V22"/>
+            <path d="M17 6 H10 A3 3 0 0 0 10 12 H14 A3 3 0 0 1 14 18 H7"/>
+          </svg>
+        </div>
+        <h3>Pay Verification</h3>
+        <p>Verify every payslip against your contract. 15 rule types, multi-currency, variance alerts when the airline pays you wrong.</p>
+      </article>
+
+      <article class="feature reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3 V21 H21"/>
+            <path d="M7 16 L11 12 L14 15 L21 8"/>
+            <path d="M17 8 H21 V12"/>
+          </svg>
+        </div>
+        <h3>Insights</h3>
+        <p>Your career in numbers. Hours by aircraft, routes flown, airports visited, year-over-year growth. The story your logbook can't tell.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════  PILOT SECTION  ═══════════════════════ -->
+<section class="pilot-section">
+  <div class="pilot-bg" aria-hidden="true">
+    <img src="photos/cockpit.jpg" alt="" loading="lazy" />
   </div>
 
-  <script>
-    // Lightweight form handler — swap action/endpoint later (Formspree, Mailchimp, Firebase, etc.)
-    const form = document.getElementById('waitlist');
-    const success = document.getElementById('success');
+  <div class="container">
+    <div class="pilot-content reveal">
+      <span class="eyebrow">Built by a pilot</span>
+      <blockquote class="pilot-quote">
+        "Every app I tried either did one thing well or six things badly. So I built the one I'd actually fly with — where every module knows about every other, and the flight deck stays uncluttered."
+      </blockquote>
+      <div class="pilot-attribution">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Pablo · Commercial pilot &amp; founder of Altivra</span>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ═══════════════════════  PRICING  ═══════════════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="section-title">Honest, <span class="accent">no-nonsense</span> pricing.</h2>
+      <p class="section-lede">Free tier that's genuinely useful. Pro tier priced like a subscription you'll forget about — once a year, less than a single sim session.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <h3>Free</h3>
+        <p class="tagline">The essentials, forever.</p>
+        <div class="price-amount">
+          <span class="num">$0</span>
+          <span class="unit">forever</span>
+        </div>
+        <ul class="price-features">
+          <li>Digital logbook · unlimited flights</li>
+          <li>Basic roster view</li>
+          <li>Career stats dashboard</li>
+          <li>World airport map</li>
+          <li>CSV import/export</li>
+        </ul>
+        <a href="#waitlist" class="btn-ghost" style="text-align: center;">Start free</a>
+      </div>
+
+      <div class="price-card featured reveal">
+        <h3>Pro</h3>
+        <p class="tagline">Everything a working pilot needs.</p>
+        <div class="price-amount">
+          <span class="num">$69.99</span>
+          <span class="unit">/ year</span>
+        </div>
+        <ul class="price-features">
+          <li>Everything in Free</li>
+          <li>Auto roster import from any airline</li>
+          <li>Rest &amp; Fatigue engine with FRMS</li>
+          <li>Briefing Room · weather, NOTAMs, route</li>
+          <li>Pay verification against contract</li>
+          <li>iPhone companion app</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#waitlist" class="btn-primary" style="justify-content: center;">Request Pro beta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════  FAQ  ═══════════════════════ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">Frequently asked</span>
+      <h2 class="section-title">Questions pilots ask first.</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>Is my data private?</summary>
+        <div class="faq-body">Your roster, logbook, and pay data are yours. Stored encrypted in iCloud (so they sync across your devices and nobody else's), never sold, never shared with your airline or anyone else. You can export everything and delete your account at any time.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>Does it work offline?</summary>
+        <div class="faq-body">Yes — Altivra is offline-first. Every module works at FL380, in the crew room, at a layover hotel on bad Wi-Fi. Changes sync automatically when you're back online. You never lose a logbook entry to spotty connectivity.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>What iPad do I need?</summary>
+        <div class="faq-body">Any iPad running iPadOS 17 or newer. Altivra is built natively with SwiftUI — it feels fast on an iPad Mini and looks gorgeous on a 13" Pro. If your airline already approved your iPad as an EFB, you're good.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>Will it import my airline's roster?</summary>
+        <div class="faq-body">Yes, that's the whole point of Wingman. We support ICS calendar feeds (works with almost every crew system), PDF roster parsing, and native integrations with popular crew-management platforms. If yours isn't supported yet, tell us — adding one is usually a few days of work.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>Is it EFB-approved?</summary>
+        <div class="faq-body">Altivra itself isn't a certified EFB — it's a personal productivity app for pilots. It lives alongside your company EFB (Jeppesen, Lido, ForeFlight) and handles the parts those apps don't touch: your personal logbook, rest, pay, and career data. Some airlines allow Altivra on the same iPad as your EFB; check with your operator.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>Can I import my existing logbook?</summary>
+        <div class="faq-body">Yes. CSV import from LogTen Pro, Foreflight Logbook, MyFlightBook, and any spreadsheet format. The importer handles common aircraft type codes and airport codes automatically, and flags anything ambiguous for you to confirm.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════  CLOSING CTA  ═══════════════════════ -->
+<section class="cta-final">
+  <div class="cta-final-bg" aria-hidden="true">
+    <img src="photos/sunset.jpg" alt="" loading="lazy" />
+  </div>
+  <div class="cta-final-vignette" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Join the beta</span>
+      <h2>Your next flight deserves better.</h2>
+      <p>Private beta opens fall 2026. Seats are limited and prioritized for commercial pilots currently line-flying.</p>
+
+      <form class="waitlist" id="waitlist-bottom" novalidate style="margin: 0 auto;">
+        <input type="email" name="email" placeholder="captain@yourairline.com" autocomplete="email" required aria-label="Your email address" />
+        <button type="submit">Request access</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════  FOOTER  ═══════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="#" class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 L19 19 L12 15 L5 19 Z" />
+            </svg>
+          </span>
+          ALTIVRA
+        </a>
+        <p>The operating system for the modern flight deck. Roster, logbook, fatigue, and pay — unified on iPad. Built by a commercial pilot for modern aviators.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist">Join beta</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@altivra.io">contact@altivra.io</a>
+        <a href="mailto:support@altivra.io">Support</a>
+        <a href="mailto:dev@altivra.io">Dev</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="mailto:legal@altivra.io">legal@altivra.io</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Altivra</div>
+      <div class="motto">Elevated truth for modern aviators.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ═══ Nav scroll effect ═══
+  const nav = document.getElementById('nav');
+  const toggleNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  toggleNav();
+  window.addEventListener('scroll', toggleNav, { passive: true });
+
+  // ═══ Scroll-triggered fade-in ═══
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ═══ Waitlist forms ═══
+  const success = document.getElementById('success');
+  const handleSubmit = (form) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = form.email.value.trim();
@@ -455,14 +1247,21 @@
         form.querySelector('input').focus();
         return;
       }
-
-      // TODO: connect to your beta-signup backend.
-      // Temporary: log + show success state.
+      // TODO: POST to /api/waitlist or Firebase/Formspree endpoint
       console.log('beta signup:', email);
-
       form.style.display = 'none';
-      success.style.display = 'block';
+      if (form.id === 'waitlist' && success) {
+        success.style.display = 'block';
+      } else {
+        const msg = document.createElement('p');
+        msg.textContent = "You're on the list. We'll be in touch soon.";
+        msg.style.cssText = 'color: var(--sky-bright); font-weight: 500; font-size: 15px; margin-top: 16px;';
+        form.parentNode.insertBefore(msg, form.nextSibling);
+      }
     });
-  </script>
+  };
+  document.querySelectorAll('form.waitlist').forEach(handleSubmit);
+</script>
+
 </body>
 </html>

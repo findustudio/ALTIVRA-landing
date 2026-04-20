@@ -1710,14 +1710,32 @@
   </div>
 </footer>
 
-<script>
-  // Nav scroll effect
+<script type="module">
+  // ═══  FIREBASE — waitlist capture  ═══
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyClCmUBwlhOWWi1y3CvsLocxeYryrC12Vo",
+    authDomain: "p-ilot-os-16rnx0.firebaseapp.com",
+    projectId: "p-ilot-os-16rnx0",
+    storageBucket: "p-ilot-os-16rnx0.firebasestorage.app",
+    messagingSenderId: "663991355372",
+    appId: "1:663991355372:web:cf238bb6c485fae24722c9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ═══  NAV scroll effect  ═══
   const nav = document.getElementById('nav');
   const toggleNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
   toggleNav();
   window.addEventListener('scroll', toggleNav, { passive: true });
 
-  // Scroll-triggered reveals
+  // ═══  Scroll-triggered reveals  ═══
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1726,29 +1744,63 @@
       }
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Waitlist forms
+  // ═══  Waitlist form handler  ═══
   const success = document.getElementById('success');
+
+  const showInlineError = (form, msg) => {
+    form.parentNode.querySelectorAll('.waitlist-error').forEach(e => e.remove());
+    const err = document.createElement('p');
+    err.className = 'waitlist-error';
+    err.textContent = msg;
+    err.style.cssText = 'color: #FF8585; font-size: 13px; margin-top: 14px; letter-spacing: 0.01em;';
+    form.parentNode.insertBefore(err, form.nextSibling);
+  };
+
+  const showSuccess = (form) => {
+    form.style.display = 'none';
+    if (form.id === 'waitlist' && success) {
+      success.style.display = 'block';
+    } else {
+      const msg = document.createElement('p');
+      msg.textContent = "You're on the list. We'll be in touch soon.";
+      msg.style.cssText =
+        'color: var(--sky-bright); font-weight: 500; font-size: 15px; margin-top: 18px;';
+      form.parentNode.insertBefore(msg, form.nextSibling);
+    }
+  };
+
   const handleSubmit = (form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = form.email.value.trim();
+      const email = form.email.value.trim().toLowerCase();
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         form.querySelector('input').focus();
         return;
       }
-      // TODO: POST to /api/waitlist or Firebase/Formspree endpoint
-      console.log('beta signup:', email);
-      form.style.display = 'none';
-      if (form.id === 'waitlist' && success) {
-        success.style.display = 'block';
-      } else {
-        const msg = document.createElement('p');
-        msg.textContent = "You're on the list. We'll be in touch soon.";
-        msg.style.cssText = 'color: var(--sky-bright); font-weight: 500; font-size: 15px; margin-top: 18px;';
-        form.parentNode.insertBefore(msg, form.nextSibling);
+
+      const button = form.querySelector('button');
+      const originalText = button.textContent;
+      button.textContent = 'Submitting…';
+      button.disabled = true;
+
+      try {
+        await addDoc(collection(db, 'waitlist'), {
+          email: email,
+          source: form.id === 'waitlist' ? 'hero' : 'bottom',
+          userAgent: (navigator.userAgent || '').substring(0, 300),
+          referrer: (document.referrer || '').substring(0, 300),
+          createdAt: serverTimestamp()
+        });
+        showSuccess(form);
+      } catch (err) {
+        console.error('Waitlist signup error:', err);
+        button.textContent = originalText;
+        button.disabled = false;
+        showInlineError(form,
+          "Something went wrong on our end. Please try again, or email contact@altivra.io."
+        );
       }
     });
   };

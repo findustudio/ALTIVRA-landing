@@ -687,6 +687,64 @@
     }
 
     /* ═══  PRICING  ═══ */
+    .founding-ribbon {
+      max-width: 1120px;
+      margin: 0 auto 44px;
+      padding: 30px 36px;
+      background:
+        linear-gradient(135deg, rgba(76,154,255,0.16) 0%, rgba(20,38,60,0.45) 100%);
+      border: 1px solid rgba(76,154,255,0.45);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px -20px rgba(76,154,255,0.35);
+    }
+    .founding-ribbon-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .founding-ribbon-left { flex: 1; min-width: 280px; }
+    .founding-badge-inline {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--sky-bright);
+      background: rgba(76,154,255,0.15);
+      border: 1px solid rgba(76,154,255,0.35);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .founding-ribbon h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 500;
+      color: var(--ivory);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .founding-ribbon h3 strong {
+      color: var(--sky-bright);
+      font-weight: 600;
+    }
+    .founding-ribbon p {
+      font-size: 14px;
+      color: var(--ivory-dim);
+      line-height: 1.6;
+      max-width: 720px;
+    }
+    .founding-ribbon-cta {
+      white-space: nowrap;
+      padding: 14px 26px !important;
+      flex-shrink: 0;
+    }
+    @media (max-width: 720px) {
+      .founding-ribbon-inner { flex-direction: column; align-items: flex-start; gap: 18px; }
+    }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1068,7 +1126,7 @@
       <div class="hero-content">
         <span class="eyebrow">
           <span class="pulse"></span>
-          Private beta · Fall 2026
+          Private beta · Summer 2026
         </span>
 
         <h1 class="hero-title">
@@ -1208,7 +1266,7 @@
           </svg>
         </div>
         <h3>Wingman</h3>
-        <p>Smart roster that auto-imports from any airline system. Duty, rest, and block hours at a glance. An AI copilot that understands your schedule is on the way.</p>
+        <p>Smart roster that auto-imports from any airline system. Duty, rest, and block hours at a glance. An AI copilot that understands your schedule <span style="color:var(--sky-bright);">— Captain tier</span>.</p>
       </article>
 
       <article class="feature reveal">
@@ -1235,7 +1293,7 @@
           </svg>
         </div>
         <h3>Digital Logbook</h3>
-        <p>Every flight auto-enriched by FlightAware — real routing, actual block times, gate and terminal info. Visualized on a world map. CSV import from anything.</p>
+        <p>Every flight, every hour, every airport — visualized on a world map. CSV import from anything. PDF export that looks official. <span style="color:var(--sky-bright);">FlightAware auto-enrichment on Captain tier.</span></p>
       </article>
 
       <article class="feature reveal">
@@ -1369,8 +1427,20 @@
       <span class="eyebrow">Pricing</span>
       <h2 class="section-title"><span class="display-gradient">Honest pricing.</span><br/><span class="accent">Founding loyalty rewarded.</span></h2>
       <p class="section-lede">
-        A free tier that's genuinely useful. A Pro tier priced under a single sim session. And a reward for the pilots who believed first.
+        A free tier that's genuinely useful. A Command tier priced under a single sim session. A Captain tier for pilots who want the AI onboard. And a reward for the pilots who believed first.
       </p>
+    </div>
+
+    <!-- Founding 500 — promotional banner above the primary tiers -->
+    <div class="founding-ribbon reveal">
+      <div class="founding-ribbon-inner">
+        <div class="founding-ribbon-left">
+          <span class="founding-badge-inline">FOUNDING 500 · LIMITED</span>
+          <h3>First 500 pilots · <strong>$49/year, locked for life</strong></h3>
+          <p>The first 500 pilots lock in Command at <strong>$49/yr</strong> — for as long as you stay subscribed. Founding Pilot badge, early access to Captain features, quarterly roadmap voting. Once claimed, the rate never moves.</p>
+        </div>
+        <a href="#waitlist" class="price-cta cta-primary founding-ribbon-cta">Reserve my seat</a>
+      </div>
     </div>
 
     <div class="pricing-grid">
@@ -1395,31 +1465,10 @@
         <a href="#waitlist" class="price-cta cta-ghost">Start free</a>
       </div>
 
-      <!-- Founding 500 (featured) -->
-      <div class="price-card featured reveal">
-        <div class="founding-badge">FOUNDING 500 · LIMITED</div>
-        <h3>Founding 500</h3>
-        <p class="tagline">For the first 500 pilots. Locked-in for life.</p>
-        <div class="price-amount">
-          <span class="price-strike">$89</span>
-          <span class="num"><span class="cur">$</span>49</span>
-          <span class="unit">/ year, for life</span>
-        </div>
-        <div class="price-equiv">~$4.08 / month · Founding Pilot badge · never increases</div>
-        <ul class="price-features">
-          <li>Everything in Pro</li>
-          <li>$49/yr Pro rate locked in — for life</li>
-          <li>"Founding Pilot" profile badge</li>
-          <li>Early access to AI Copilot &amp; every new Pro feature</li>
-          <li>Quarterly roadmap voting</li>
-        </ul>
-        <a href="#waitlist" class="price-cta cta-primary">Reserve my seat</a>
-      </div>
-
-      <!-- Pro -->
+      <!-- Command -->
       <div class="price-card reveal">
-        <h3>Pro</h3>
-        <p class="tagline">Everything a working pilot needs.</p>
+        <h3>Command</h3>
+        <p class="tagline">For the pilot in command of their career.</p>
         <div class="price-amount">
           <span class="num"><span class="cur">$</span>89</span>
           <span class="unit">/ year</span>
@@ -1431,17 +1480,38 @@
           <li>Rest &amp; Fatigue engine (FRMS)</li>
           <li>Briefing Room · weather, NOTAMs, route</li>
           <li>Pay verification — 15 rule types</li>
-          <li>FlightAware · auto-enrich every flight</li>
-          <li>AI Copilot in Wingman <span class="mono" style="color:var(--sky-bright);font-size:11px;">SOON</span></li>
           <li>iPhone companion app</li>
           <li>Unwatermarked PDF export · priority support</li>
+          <li>3 AI Copilot queries/month (same as Free)</li>
         </ul>
-        <a href="#waitlist" class="price-cta cta-ghost">Request Pro beta</a>
+        <a href="#waitlist" class="price-cta cta-ghost">Request Command beta</a>
+      </div>
+
+      <!-- Captain (featured, the premium AI tier) -->
+      <div class="price-card featured reveal">
+        <div class="founding-badge">CAPTAIN · FULL AI</div>
+        <h3>Captain</h3>
+        <p class="tagline">The full flight deck. AI and FlightAware onboard.</p>
+        <div class="price-amount">
+          <span class="num"><span class="cur">$</span>129</span>
+          <span class="unit">/ year</span>
+        </div>
+        <div class="price-equiv">~$10.75 / month · Captain-only features included</div>
+        <ul class="price-features">
+          <li><strong>Everything in Command</strong></li>
+          <li>FlightAware · auto-enrich every flight</li>
+          <li>AI Copilot in Wingman · <strong>unlimited</strong> queries <span class="mono" style="color:var(--sky-bright);font-size:11px;">SOON</span></li>
+          <li>AI fatigue recovery planning <span class="mono" style="color:var(--sky-bright);font-size:11px;">SOON</span></li>
+          <li>AI pay claim drafting <span class="mono" style="color:var(--sky-bright);font-size:11px;">SOON</span></li>
+          <li>Deep roster optimization</li>
+          <li>Priority Captain support channel</li>
+        </ul>
+        <a href="#waitlist" class="price-cta cta-primary">Request Captain beta</a>
       </div>
     </div>
 
     <p class="founding-footnote reveal">
-      <span class="mono star">★</span> The Founding 500 tier is capped at the first 500 pilots who join during the private beta. Once claimed, the $49/yr rate stays locked in for the <em>current Pro tier</em> — for as long as you stay subscribed, even when public Pro pricing rises. Higher tiers that launch later (e.g. Pro+ AI) are optional upgrades.
+      <span class="mono star">★</span> <strong>Captain tier launches alongside the AI Copilot rollout.</strong> Founding 500 members get early access to Captain features as they ship, and can upgrade to Captain at any time by paying the tier difference — their Founding Command rate stays locked regardless.
     </p>
 
     <p class="founding-footnote reveal mono" style="margin-top:18px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;">
@@ -1494,15 +1564,23 @@
     <div class="faq-list">
       <details class="faq-item reveal">
         <summary>When does Altivra launch?</summary>
-        <div class="faq-body">The private beta opens Fall 2026, prioritized for commercial pilots currently line-flying. Public launch follows once the Founding 500 have worn-tested every module at altitude and in the crew room. Join the waitlist to be first in line.</div>
+        <div class="faq-body">The private beta opens Summer 2026, prioritized for commercial pilots currently line-flying. Public launch follows once the Founding 500 have worn-tested every module at altitude and in the crew room. Join the waitlist to be first in line.</div>
+      </details>
+
+      <details class="faq-item reveal">
+        <summary>What's the difference between Command and Captain?</summary>
+        <div class="faq-body">
+          <p style="margin-bottom:14px;"><strong>Command</strong> ($89/yr) is the core tier for a working pilot: unlimited logbook, auto roster import, FRMS fatigue engine, Briefing Room, pay verification, iPhone companion, priority support. If you want a single app that replaces your paper logbook, spreadsheet-based fatigue tracker, and DIY pay calculator — Command is it.</p>
+          <p><strong>Captain</strong> ($129/yr) is everything in Command plus the two costliest-but-highest-value features: <strong>FlightAware auto-enrichment</strong> (real routing, actual block times, gate/terminal info on every flight) and the <strong>AI Copilot</strong> in Wingman — a Claude-powered assistant that understands your roster, logbook, and rest data together. Captain is priced to reflect the real per-flight and per-query costs of those premium services.</p>
+        </div>
       </details>
 
       <details class="faq-item reveal">
         <summary>How does the Founding 500 lifetime lock-in work?</summary>
         <div class="faq-body">
-          <p style="margin-bottom:14px;">The first 500 pilots who subscribe during the private beta lock in <strong>$49/year for the current Pro tier</strong> — for as long as they stay subscribed. Even when public Pro pricing rises to $99 after launch (and higher as the app matures), your $49 Pro rate never moves.</p>
-          <p style="margin-bottom:14px;"><strong>To be fully transparent:</strong> your lock-in is specifically for the current Pro tier. Every new feature that ships <em>inside</em> Pro — FlightAware enrichment, basic AI Copilot queries, new reports, platform improvements — arrives at your Founding rate at no extra cost.</p>
-          <p>However, if a new higher tier launches later (for example Pro+ AI at a planned $129/year, with advanced AI features), that's a separate subscription you'd choose to upgrade to. Founding Pilots get early access to those advanced features as they arrive, but the $49 lock-in applies to Pro, not to premium tiers above it.</p>
+          <p style="margin-bottom:14px;">The first 500 pilots who subscribe during the private beta lock in <strong>$49/year for the Command tier</strong> — for as long as they stay subscribed. Even when public Command pricing rises after launch (and higher as the app matures), your $49 Command rate never moves.</p>
+          <p style="margin-bottom:14px;"><strong>To be fully transparent:</strong> your lock-in is specifically for the Command tier. Every new feature that ships <em>inside</em> Command — new reports, platform improvements, tier-internal enhancements — arrives at your Founding rate at no extra cost.</p>
+          <p>The Captain tier is a separate, higher subscription ($129/yr) that includes FlightAware enrichment and the full AI Copilot. If you ever want Captain, you can upgrade at any time by paying the tier difference, and your Command rate stays locked. Founding 500 members also get early access to Captain features as they ship.</p>
         </div>
       </details>
 
@@ -1543,32 +1621,27 @@
 
       <details class="faq-item reveal">
         <summary>Can I pay monthly?</summary>
-        <div class="faq-body">Yes. Pro is $89/year or $8.99/month. The Founding 500 tier is annual only — it's a commitment to the early journey in exchange for lifetime pricing.</div>
+        <div class="faq-body">Yes — Command is $89/year or $8.99/month. Captain is annual only ($129/yr) because the FlightAware and AI Copilot cost structure favors annual commitments. The Founding 500 tier is annual only too — it's a commitment to the early journey in exchange for lifetime pricing.</div>
       </details>
 
       <details class="faq-item reveal">
         <summary>What are the limits on the Free tier?</summary>
-        <div class="faq-body">Free lets you try the deck, not live on it. You can log up to 50 flights, view your roster in read-only mode, see basic career stats, and browse the world airport map. PDF exports are watermarked. There's no trial clock — take as long as you want. When you're ready for auto-roster, FRMS fatigue, pay verification, FlightAware enrichment, or the AI Copilot, Pro is one tap away.</div>
+        <div class="faq-body">Free lets you try the deck, not live on it. You can log up to 50 flights, view your roster in read-only mode, see basic career stats, browse the world airport map, and ask 3 AI Copilot queries per month. PDF exports are watermarked. There's no trial clock — take as long as you want. When you're ready for auto-roster, FRMS fatigue, and pay verification, Command is one tap away. When you want FlightAware enrichment and the full AI Copilot, Captain is the upgrade path.</div>
       </details>
 
       <details class="faq-item reveal">
         <summary>What is the AI Copilot in Wingman?</summary>
-        <div class="faq-body">An AI assistant, powered by Claude, that understands your roster, logbook, and rest data together. Ask questions in plain English — "when's my next long-haul?", "how many layovers in Tokyo this quarter?", "do I have enough rest for the LHR pairing?" — and get instant answers. It's coming to Pro in 2026; Founding 500 pilots get early access.</div>
+        <div class="faq-body">An AI assistant, powered by Claude, that understands your roster, logbook, and rest data together. Ask questions in plain English — "when's my next long-haul?", "how many layovers in Tokyo this quarter?", "do I have enough rest for the LHR pairing?" — and get instant answers. It's a <strong>Captain-tier</strong> feature arriving in 2026. Free and Command get 3 sample queries per month; Captain gets unlimited. Founding 500 pilots get early access.</div>
       </details>
 
       <details class="faq-item reveal">
         <summary>How does FlightAware enrichment work?</summary>
-        <div class="faq-body">Every flight you log is automatically matched against FlightAware's real-time flight data — actual routing, gate and terminal assignments, real block times, diversions. You don't have to enter anything manually beyond the flight number and date. The enrichment runs server-side so your iPad isn't making API calls. Included in Pro and Founding 500.</div>
+        <div class="faq-body">Every flight you log is automatically matched against FlightAware's real-time flight data — actual routing, gate and terminal assignments, real block times, diversions. You don't have to enter anything manually beyond the flight number and date. The enrichment runs server-side so your iPad isn't making API calls. It's a <strong>Captain-tier</strong> feature (the per-flight API cost is why it lives in the premium tier).</div>
       </details>
 
       <details class="faq-item reveal">
         <summary>Will prices go up after launch?</summary>
-        <div class="faq-body">Yes — deliberately. The $89/yr Pro rate is intentionally priced under a competitor single-sim-session cost during the beta. Once the app matures past public launch, Pro will rise to $99/yr, and a separate Pro+ AI tier will launch at $129/yr once the advanced AI features land. Founding 500 members are immune to all future increases — the $49/yr rate is locked in for as long as you stay subscribed.</div>
-      </details>
-
-      <details class="faq-item reveal">
-        <summary>What's coming in Pro+ AI?</summary>
-        <div class="faq-body">A planned fourth tier for pilots who want every advanced AI feature: deep roster optimization, fatigue-aware recovery planning powered by AI, automated pay claim drafting, and the full AI Copilot without query limits. Scheduled to launch after the Founding 500 phase closes. Founding Pilots get early access when it arrives; pricing is expected at $129/yr.</div>
+        <div class="faq-body">Yes — deliberately. The $89/yr Command rate is intentionally priced under a single sim-session cost during the beta. Once the app matures past public launch, Command will rise to $99/yr (and potentially higher over time). Captain starts at $129/yr and is unlikely to drop. <strong>Founding 500 members are immune to all future increases</strong> — the $49/yr rate is locked in on the Command tier for as long as you stay subscribed.</div>
       </details>
     </div>
   </div>
@@ -1583,7 +1656,7 @@
         Join the Founding 500
       </span>
       <h2><span class="display-gradient">Your next flight </span><span class="accent">deserves better.</span></h2>
-      <p>Private beta opens Fall 2026. Seats are limited. The first 500 pilots lock in $49/year — for life.</p>
+      <p>Private beta opens Summer 2026. Seats are limited. The first 500 pilots lock in Command at $49/year — for life.</p>
 
       <form class="waitlist" id="waitlist-bottom" novalidate style="margin: 0 auto;">
         <input type="email" name="email" placeholder="captain@yourairline.com" autocomplete="email" required aria-label="Your email address" />
@@ -1620,14 +1693,13 @@
         <h4>Contact</h4>
         <a href="mailto:contact@altivra.io">contact@altivra.io</a>
         <a href="mailto:support@altivra.io">support@altivra.io</a>
-        <a href="mailto:hello@altivra.io">hello@altivra.io</a>
       </div>
 
       <div class="footer-col">
         <h4>Legal</h4>
-        <a href="mailto:legal@altivra.io">legal@altivra.io</a>
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
+        <a href="mailto:contact@altivra.io">Legal inquiries</a>
       </div>
     </div>
 

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms of Service — Altivra</title>
+  <meta name="description" content="Terms of using Altivra — the pilot's operating system for iPad." />
+  <meta name="theme-color" content="#0B1E34" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="photos/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="photos/favicon-16.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="photos/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --midnight:       #0B1E34;
+      --midnight-deep:  #06131F;
+      --runway:         #142A42;
+      --ivory:          #F4F6F9;
+      --ivory-dim:      #D8DEE8;
+      --mist:           #9AA9BD;
+      --muted:          #6B7A90;
+      --sky:            #4C9AFF;
+      --sky-bright:     #6FB2FF;
+      --sky-dim:        #2F80ED;
+      --warning:        #FFB547;
+      --divider:        rgba(255,255,255,0.08);
+      --divider-strong: rgba(255,255,255,0.14);
+      --radius-sm:      14px;
+      --radius:         20px;
+      --maxw-editorial: 780px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *:focus-visible { outline: 2px solid var(--sky-bright); outline-offset: 3px; border-radius: 6px; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html, body {
+      background: var(--midnight-deep);
+      color: var(--ivory);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      background:
+        radial-gradient(ellipse 60% 40% at 90% 95%, rgba(47,128,237,0.06), transparent 65%),
+        linear-gradient(180deg, var(--midnight-deep) 0%, #030A12 100%);
+      min-height: 100vh;
+    }
+    a { color: var(--sky-bright); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--sky); text-decoration: underline; }
+    ::selection { background: rgba(76,154,255,0.35); color: #fff; }
+
+    /* ═══  NAV  ═══ */
+    .nav-outer {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(6,19,31,0.72);
+      backdrop-filter: blur(18px) saturate(1.2);
+      -webkit-backdrop-filter: blur(18px) saturate(1.2);
+      border-bottom: 1px solid var(--divider);
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.22em;
+      color: var(--ivory);
+      text-decoration: none;
+    }
+    .brand-mark {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(47,128,237,0.28), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .brand-mark img { width: 28px; height: 28px; }
+    .nav-back {
+      color: var(--ivory-dim);
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-back:hover { color: var(--ivory); text-decoration: none; }
+    .nav-back::before { content: '←'; opacity: 0.6; }
+
+    /* ═══  PAGE HEADER  ═══ */
+    .page-header {
+      padding: 100px 0 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--divider);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(76,154,255,0.09);
+      border: 1px solid rgba(76,154,255,0.22);
+      color: var(--sky-bright);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #FFFFFF 0%, #C1CBDA 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 18px;
+    }
+    .effective {
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ═══  CONTENT  ═══ */
+    .content {
+      max-width: var(--maxw-editorial);
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+    .content p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--ivory-dim);
+      margin-bottom: 18px;
+    }
+    .content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--ivory);
+      letter-spacing: -0.015em;
+      margin: 60px 0 18px;
+      padding-top: 40px;
+      border-top: 1px solid var(--divider);
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .content h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+    .content h2 .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--sky-bright);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+    .content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ivory);
+      margin: 28px 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .content ul {
+      margin: 14px 0 18px 4px;
+      padding: 0;
+      list-style: none;
+    }
+    .content ul li {
+      padding: 8px 0 8px 24px;
+      position: relative;
+      color: var(--ivory-dim);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .content ul li::before {
+      content: '';
+      position: absolute;
+      left: 2px; top: 17px;
+      width: 8px; height: 1px;
+      background: var(--sky-bright);
+      opacity: 0.7;
+    }
+    .content ul li strong { color: var(--ivory); font-weight: 500; }
+    .content strong { color: var(--ivory); font-weight: 500; }
+    .content em { color: var(--sky-bright); font-style: italic; }
+    .content a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    .callout {
+      margin: 28px 0;
+      padding: 22px 26px;
+      background: rgba(20,38,60,0.45);
+      border: 1px solid rgba(76,154,255,0.25);
+      border-left: 3px solid var(--sky-bright);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      color: var(--ivory-dim);
+    }
+
+    /* ═══  AVIATION DISCLAIMER — this one shouts  ═══ */
+    .aviation-disclaimer {
+      margin: 32px 0;
+      padding: 28px 30px;
+      background: linear-gradient(135deg, rgba(255,181,71,0.10) 0%, rgba(255,181,71,0.03) 100%);
+      border: 1px solid rgba(255,181,71,0.35);
+      border-left: 3px solid var(--warning);
+      border-radius: var(--radius-sm);
+    }
+    .aviation-disclaimer .stripe {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--warning);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .aviation-disclaimer strong {
+      color: var(--warning);
+      font-weight: 600;
+    }
+
+    /* ═══  FOOTER  ═══ */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--divider);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-bar a {
+      color: var(--mist);
+      margin: 0 8px;
+      text-decoration: none;
+    }
+    .footer-bar a:hover { color: var(--ivory); text-decoration: none; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body>
+
+<div class="nav-outer">
+  <div class="container">
+    <nav>
+      <a href="/" class="brand" aria-label="Altivra home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="photos/logo-mark.png" alt="" />
+        </span>
+        A L T I V R A
+      </a>
+      <a href="/" class="nav-back">Back to home</a>
+    </nav>
+  </div>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Legal</span>
+    <h1>Terms of Service</h1>
+    <p class="effective">Effective April 19, 2026</p>
+  </div>
+</header>
+
+<main class="content">
+
+  <p>
+    These terms govern your use of Altivra — the website at <a href="https://www.altivra.app">altivra.app</a> and the iPad app. By using either, you agree to these terms. If you don't agree, please don't use the product.
+  </p>
+
+  <div class="aviation-disclaimer">
+    <div class="stripe">⚠ Critical aviation disclaimer — read first</div>
+    <p style="margin-bottom:12px;">
+      <strong>Altivra is NOT a certified Electronic Flight Bag (EFB).</strong> It is a personal productivity tool and is not intended as a primary reference for flight planning, navigation, weather briefing, NOTAM verification, fuel calculation, or any operational flight decision.
+    </p>
+    <p style="margin-bottom:0;">
+      Always consult your company's approved EFB (Jeppesen, Lido, ForeFlight, etc.), your operations manual, official regulatory sources (your CAA/FAA/EASA publications), and your dispatcher. <strong>Pilot-in-Command authority and operational responsibility remain entirely yours.</strong> Altivra shall not be held liable for any flight operation, delay, incident, or decision made in reliance on its data.
+    </p>
+  </div>
+
+  <h2><span class="num">01</span><span>About these terms</span></h2>
+  <p>
+    These are legally binding terms between you and Altivra (operating under Findustudio). "We", "us", and "our" refer to Altivra. "You" refers to any person using the website or the iPad app.
+  </p>
+  <p>
+    We may update these terms as the product evolves. We'll notify you by email (for account holders) or in-app announcement at least 30 days before material changes take effect.
+  </p>
+
+  <h2><span class="num">02</span><span>Who can use Altivra</span></h2>
+  <p>
+    You must be at least 18 years old to use Altivra. By using the service, you represent that you're a commercial or airline pilot (or training to become one), you have the legal capacity to agree to these terms, and you'll comply with all applicable aviation regulations in your jurisdiction.
+  </p>
+
+  <h2><span class="num">03</span><span>The service</span></h2>
+  <p>
+    Altivra provides a set of integrated modules for pilot productivity, including:
+  </p>
+  <ul>
+    <li>Digital logbook with CSV/PDF import and export</li>
+    <li>Roster auto-import from airline crew management systems (Command tier)</li>
+    <li>Rest &amp; Fatigue tracking with FRMS-aware calculations (Command tier)</li>
+    <li>Briefing Room — weather, NOTAMs, route aggregation (Command tier)</li>
+    <li>Pay verification against your contract (Command tier)</li>
+    <li>FlightAware-based flight data enrichment (Captain tier)</li>
+    <li>AI Copilot — Claude-powered natural-language assistant (Captain tier, available 2026)</li>
+    <li>iPhone companion app (Command and Captain tiers)</li>
+  </ul>
+  <p>
+    We may add, change, or remove features over time. Material changes that reduce functionality you've paid for will be communicated at least 30 days in advance.
+  </p>
+
+  <h2><span class="num">04</span><span>Your account</span></h2>
+  <p>
+    You are responsible for maintaining the confidentiality of your account credentials and for any activity under your account. Notify us immediately at <a href="mailto:support@altivra.io">support@altivra.io</a> if you believe your account has been compromised.
+  </p>
+
+  <h2><span class="num">05</span><span>Subscription tiers &amp; billing</span></h2>
+
+  <h3>Current pricing</h3>
+  <ul>
+    <li><strong>Free</strong> — $0 forever, limited features (50 flights, 3 AI queries/month, read-only roster)</li>
+    <li><strong>Command</strong> — $89/year or $8.99/month</li>
+    <li><strong>Captain</strong> — $129/year</li>
+    <li><strong>Founding 500</strong> — $49/year for life, limited to the first 500 subscribers, locked to the Command tier</li>
+  </ul>
+
+  <h3>Billing</h3>
+  <p>
+    Paid subscriptions are processed through the Apple App Store under Apple's payment terms. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period, through your Apple ID subscription management.
+  </p>
+
+  <h3>Founding 500 lock-in</h3>
+  <p>
+    The Founding 500 rate of $49/year applies to the <em>Command tier</em> specifically, and is locked in for as long as you remain continuously subscribed. If you cancel and later resubscribe, the Founding rate is forfeit and current public pricing applies. Captain and any future premium tiers are separate subscriptions not covered by the Founding lock-in.
+  </p>
+
+  <h3>Price changes</h3>
+  <p>
+    We may adjust public pricing after launch. Founding 500 members are exempt from Command tier increases per the terms of their original subscription. For non-Founding subscriptions, price changes will be communicated at least 30 days before the next renewal, and you can cancel before the new rate applies.
+  </p>
+
+  <h3>Refunds</h3>
+  <p>
+    Refunds are handled by Apple per the <a href="https://support.apple.com/HT204084">App Store refund policy</a>. We cannot issue refunds directly.
+  </p>
+
+  <h2><span class="num">06</span><span>Your data</span></h2>
+  <p>
+    You own the data you put into Altivra — your logbook, roster, pay history, fatigue log. We store and process it as described in our <a href="/privacy">Privacy Policy</a>. You can export or delete your data at any time.
+  </p>
+  <p>
+    By using Altivra, you grant us a limited, non-exclusive license to process your data solely to provide the service (e.g., syncing your logbook across your devices, enriching flights with FlightAware data if you're on Captain tier). We don't claim ownership of your data and never sell or share it.
+  </p>
+
+  <h2><span class="num">07</span><span>Intellectual property</span></h2>
+  <p>
+    Altivra — the app, website, brand, logo, design, and source code — is the intellectual property of Altivra (operating under Findustudio). You may not copy, modify, reverse-engineer, or redistribute any part of the service without our prior written permission.
+  </p>
+  <p>
+    The "Altivra" name and logo are our trademarks. Third-party names (Apple, FlightAware, Anthropic, Claude, etc.) are the property of their respective owners.
+  </p>
+
+  <h2><span class="num">08</span><span>Prohibited uses</span></h2>
+  <p>
+    You agree not to:
+  </p>
+  <ul>
+    <li>Use Altivra in violation of any applicable aviation regulation, law, or employer policy</li>
+    <li>Attempt to access other pilots' data or accounts</li>
+    <li>Reverse-engineer, scrape, or probe the service for security vulnerabilities (coordinated disclosure to <a href="mailto:legal@altivra.io">legal@altivra.io</a> is welcomed)</li>
+    <li>Upload malicious content, spam, or unauthorized commercial material</li>
+    <li>Use the AI Copilot to generate content that violates applicable laws or Anthropic's usage policies</li>
+    <li>Use Altivra for any purpose other than personal pilot productivity</li>
+  </ul>
+
+  <h2><span class="num">09</span><span>Third-party services</span></h2>
+  <p>
+    Altivra integrates with third-party services (Apple, Google Firebase, FlightAware, Anthropic, Vercel). Your use of those services, where their data or features reach you through Altivra, is additionally governed by their own terms of service and privacy policies. We disclaim responsibility for third-party outages, data inaccuracies, or changes to their APIs.
+  </p>
+
+  <h2><span class="num">10</span><span>Disclaimer of warranties</span></h2>
+  <p>
+    Altivra is provided <strong>"as is" and "as available"</strong>, without warranties of any kind, express or implied. We do not warrant that:
+  </p>
+  <ul>
+    <li>Weather, NOTAM, routing, or FlightAware-enriched data is accurate, complete, or current</li>
+    <li>Pay verification calculations match your actual payroll outcome (the final determination is made by your airline's payroll, not Altivra)</li>
+    <li>Fatigue calculations satisfy any regulatory requirement (they are for personal awareness only)</li>
+    <li>AI Copilot responses are accurate or appropriate for any specific decision</li>
+    <li>The service will be uninterrupted, error-free, or permanently available</li>
+  </ul>
+
+  <h2><span class="num">11</span><span>Limitation of liability</span></h2>
+  <p>
+    To the maximum extent permitted by applicable law:
+  </p>
+  <ul>
+    <li>Altivra will not be liable for any indirect, incidental, consequential, special, or exemplary damages</li>
+    <li>Altivra will not be liable for loss of data, loss of profits, reputational harm, or any operational decision made in reliance on the service</li>
+    <li>Altivra's total aggregate liability for any claim related to the service is limited to the amount you paid us in the 12 months preceding the event giving rise to the claim, or USD $50, whichever is greater</li>
+  </ul>
+  <p>
+    This limitation applies regardless of the legal theory (contract, tort, statute, or otherwise) and survives termination of these terms.
+  </p>
+
+  <h2><span class="num">12</span><span>Indemnification</span></h2>
+  <p>
+    You agree to defend, indemnify, and hold Altivra harmless from any claim, liability, damage, or expense (including reasonable attorney fees) arising from your misuse of the service, your violation of these terms, or your violation of any applicable regulation.
+  </p>
+
+  <h2><span class="num">13</span><span>Termination</span></h2>
+  <p>
+    You may cancel your subscription at any time through your Apple ID subscription management. You retain access through the end of your current billing period.
+  </p>
+  <p>
+    We may suspend or terminate your account if you materially breach these terms, abuse the service, or use it in a manner that creates legal risk for Altivra or other users. We'll give you a reasonable opportunity to remedy the breach before termination, where practical.
+  </p>
+
+  <h2><span class="num">14</span><span>Governing law</span></h2>
+  <p>
+    These terms are governed by the laws of <strong>Mexico</strong>, without regard to conflict-of-law principles. Any disputes arising from your use of Altivra will be resolved in the courts of <strong>Mexico City, Mexico</strong>, and you consent to their exclusive jurisdiction. Nothing in this section limits consumer rights that cannot be waived under your local law.
+  </p>
+
+  <h2><span class="num">15</span><span>Severability</span></h2>
+  <p>
+    If any provision of these terms is held unenforceable, the remaining provisions continue in full force. The unenforceable provision will be replaced with one that most closely reflects its original intent, to the extent permitted by law.
+  </p>
+
+  <h2><span class="num">16</span><span>Contact</span></h2>
+  <p>
+    For legal matters related to these terms, or to exercise rights under applicable law:
+  </p>
+  <ul>
+    <li><strong>Legal</strong>: <a href="mailto:legal@altivra.io">legal@altivra.io</a></li>
+    <li><strong>Support</strong>: <a href="mailto:support@altivra.io">support@altivra.io</a></li>
+    <li><strong>Contact</strong>: <a href="mailto:contact@altivra.io">contact@altivra.io</a></li>
+  </ul>
+
+  <div class="callout">
+    <strong>A note on these terms.</strong> They were drafted as a reasonable starting point for a pre-launch pilot productivity app. They do not constitute legal advice and should be reviewed by a qualified attorney — ideally one familiar with aviation SaaS and consumer subscription law in Mexico and the jurisdictions where Altivra's users fly — before public launch or material product changes.
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bar">
+      <div>© 2026 Altivra · <span class="mono">altivra.app</span></div>
+      <div>
+        <a href="/">Home</a> ·
+        <a href="/privacy">Privacy</a> ·
+        <a href="/terms">Terms</a> ·
+        <a href="mailto:legal@altivra.io">legal@altivra.io</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

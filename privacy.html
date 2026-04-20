@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy — Altivra</title>
+  <meta name="description" content="How Altivra collects, uses, and protects your data. Built by a pilot, for pilots." />
+  <meta name="theme-color" content="#0B1E34" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="photos/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="photos/favicon-16.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="photos/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --midnight:       #0B1E34;
+      --midnight-deep:  #06131F;
+      --runway:         #142A42;
+      --ivory:          #F4F6F9;
+      --ivory-dim:      #D8DEE8;
+      --mist:           #9AA9BD;
+      --muted:          #6B7A90;
+      --sky:            #4C9AFF;
+      --sky-bright:     #6FB2FF;
+      --sky-dim:        #2F80ED;
+      --divider:        rgba(255,255,255,0.08);
+      --divider-strong: rgba(255,255,255,0.14);
+      --radius-sm:      14px;
+      --radius:         20px;
+      --maxw-editorial: 780px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *:focus-visible { outline: 2px solid var(--sky-bright); outline-offset: 3px; border-radius: 6px; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html, body {
+      background: var(--midnight-deep);
+      color: var(--ivory);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      background:
+        radial-gradient(ellipse 60% 40% at 90% 95%, rgba(47,128,237,0.06), transparent 65%),
+        linear-gradient(180deg, var(--midnight-deep) 0%, #030A12 100%);
+      min-height: 100vh;
+    }
+    a { color: var(--sky-bright); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--sky); text-decoration: underline; }
+    ::selection { background: rgba(76,154,255,0.35); color: #fff; }
+
+    /* ═══  NAV  ═══ */
+    .nav-outer {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(6,19,31,0.72);
+      backdrop-filter: blur(18px) saturate(1.2);
+      -webkit-backdrop-filter: blur(18px) saturate(1.2);
+      border-bottom: 1px solid var(--divider);
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.22em;
+      color: var(--ivory);
+      text-decoration: none;
+    }
+    .brand-mark {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(47,128,237,0.28), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+    .brand-mark img { width: 28px; height: 28px; }
+    .nav-back {
+      color: var(--ivory-dim);
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-back:hover { color: var(--ivory); text-decoration: none; }
+    .nav-back::before { content: '←'; opacity: 0.6; }
+
+    /* ═══  PAGE HEADER  ═══ */
+    .page-header {
+      padding: 100px 0 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--divider);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(76,154,255,0.09);
+      border: 1px solid rgba(76,154,255,0.22);
+      color: var(--sky-bright);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #FFFFFF 0%, #C1CBDA 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 18px;
+    }
+    .effective {
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ═══  CONTENT  ═══ */
+    .content {
+      max-width: var(--maxw-editorial);
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+    .content p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--ivory-dim);
+      margin-bottom: 18px;
+    }
+    .content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--ivory);
+      letter-spacing: -0.015em;
+      margin: 60px 0 18px;
+      padding-top: 40px;
+      border-top: 1px solid var(--divider);
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+    .content h2:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    .content h2 .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--sky-bright);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+    .content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--ivory);
+      margin: 28px 0 10px;
+      letter-spacing: -0.01em;
+    }
+    .content ul {
+      margin: 14px 0 18px 4px;
+      padding: 0;
+      list-style: none;
+    }
+    .content ul li {
+      padding: 8px 0 8px 24px;
+      position: relative;
+      color: var(--ivory-dim);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    .content ul li::before {
+      content: '';
+      position: absolute;
+      left: 2px; top: 17px;
+      width: 8px; height: 1px;
+      background: var(--sky-bright);
+      opacity: 0.7;
+    }
+    .content ul li strong { color: var(--ivory); font-weight: 500; }
+    .content strong { color: var(--ivory); font-weight: 500; }
+    .content em { color: var(--sky-bright); font-style: italic; }
+    .content a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    .callout {
+      margin: 28px 0;
+      padding: 22px 26px;
+      background: rgba(20,38,60,0.45);
+      border: 1px solid rgba(76,154,255,0.25);
+      border-left: 3px solid var(--sky-bright);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      color: var(--ivory-dim);
+    }
+
+    /* ═══  FOOTER  ═══ */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--divider);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .footer-bar a {
+      color: var(--mist);
+      margin: 0 8px;
+      text-decoration: none;
+    }
+    .footer-bar a:hover { color: var(--ivory); text-decoration: none; }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav-outer">
+  <div class="container">
+    <nav>
+      <a href="/" class="brand" aria-label="Altivra home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="photos/logo-mark.png" alt="" />
+        </span>
+        A L T I V R A
+      </a>
+      <a href="/" class="nav-back">Back to home</a>
+    </nav>
+  </div>
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="effective">Effective April 19, 2026</p>
+  </div>
+</header>
+
+<main class="content">
+
+  <h2><span class="num">01</span><span>Who we are</span></h2>
+  <p>
+    Altivra is a pilot productivity tool built by a working airline pilot. We collect the minimum data required to run the product, treat your data the way we'd want our own handled, and never sell it. This policy explains what we collect, why, where it lives, and what rights you have over it.
+  </p>
+  <p>
+    "Altivra", "we", "us", and "our" refer to Altivra (operating under Findustudio). "You" refers to any pilot using the website (<a href="https://www.altivra.app">altivra.app</a>) or the iPad app.
+  </p>
+
+  <h2><span class="num">02</span><span>Information we collect</span></h2>
+
+  <h3>Waitlist (website)</h3>
+  <ul>
+    <li><strong>Email address</strong> — when you submit the beta access form</li>
+    <li><strong>Technical metadata</strong> — timestamp, browser user agent, referrer (for spam prevention and to understand where visitors come from)</li>
+  </ul>
+
+  <h3>Account (iPad app)</h3>
+  <ul>
+    <li><strong>Name, email, password hash</strong> — when you create an account</li>
+    <li><strong>Flight logbook data</strong> — entries you add, import, or enrich</li>
+    <li><strong>Roster data</strong> — imported from your airline's crew management system</li>
+    <li><strong>Fatigue data</strong> — rest periods, sleep markers, layover context</li>
+    <li><strong>Pay data</strong> — payslip information you upload for verification against your contract</li>
+    <li><strong>Preferences &amp; settings</strong> — your configuration of the app</li>
+  </ul>
+
+  <h3>Device &amp; diagnostic data</h3>
+  <ul>
+    <li>iPad model, iOS version, app version (for compatibility and crash reports)</li>
+    <li>Anonymized usage analytics — which features you open, session frequency. This data is never tied to your personal identity.</li>
+  </ul>
+
+  <h2><span class="num">03</span><span>How we use your data</span></h2>
+  <ul>
+    <li>Deliver the app's features (roster display, fatigue tracking, pay verification, etc.)</li>
+    <li>Send beta access emails to waitlist subscribers</li>
+    <li>Troubleshoot issues using anonymized crash reports</li>
+    <li>Improve the app through aggregate usage analytics</li>
+    <li>Respond to your support requests</li>
+  </ul>
+  <p>
+    We do <strong>not</strong> use your data for advertising, profiling, or training third-party AI models on your personal information.
+  </p>
+
+  <h2><span class="num">04</span><span>Where your data lives</span></h2>
+  <ul>
+    <li><strong>Flight, logbook, pay, and fatigue data</strong> — stored in <em>your</em> iCloud, encrypted end-to-end. We, as a company, do not have access to the contents.</li>
+    <li><strong>Waitlist emails, account identifiers, Firebase Auth</strong> — stored in Google Firebase (Google Cloud), encrypted in transit and at rest</li>
+    <li><strong>Cached data on your iPad</strong> — encrypted by iOS using standard Apple data protection</li>
+  </ul>
+
+  <h2><span class="num">05</span><span>Third parties we work with</span></h2>
+  <p>
+    Altivra is small. To run the product, we rely on carefully selected third parties. We send them only the data they need to do their job.
+  </p>
+  <ul>
+    <li><strong>Google / Firebase</strong> — authentication, Firestore database, Cloud Functions. Processes account and waitlist data on our behalf under Google's DPA.</li>
+    <li><strong>FlightAware</strong> (Captain tier only) — receives your flight number and date to enrich your logbook with real routing, block times, and gate info. No personal identifiers are sent.</li>
+    <li><strong>Anthropic</strong> (Captain tier, AI Copilot, coming 2026) — processes your natural-language queries. We send only the minimum context needed to answer each question; queries are not used to train Anthropic's models (per Anthropic's enterprise policy).</li>
+    <li><strong>Apple</strong> — handles iCloud encrypted sync and App Store subscription payments. Governed by Apple's privacy policy.</li>
+    <li><strong>Vercel</strong> — hosts the altivra.app website (where you're reading this). Processes server logs with standard access information.</li>
+  </ul>
+
+  <h2><span class="num">06</span><span>What we don't do</span></h2>
+  <ul>
+    <li>We don't <strong>sell</strong> your data. Ever.</li>
+    <li>We don't <strong>share</strong> your data with your airline, your carrier, or any other aviation employer.</li>
+    <li>We don't <strong>show ads</strong>. Not now, not at scale.</li>
+    <li>We don't <strong>track you across the web</strong> — no cross-site cookies, no fingerprinting.</li>
+    <li>We don't <strong>use your content to train AI</strong> on a population level.</li>
+  </ul>
+
+  <h2><span class="num">07</span><span>Your rights</span></h2>
+  <ul>
+    <li><strong>Access</strong> — request a copy of all data we hold about you. Email <a href="mailto:legal@altivra.io">legal@altivra.io</a>.</li>
+    <li><strong>Delete</strong> — delete your account and all associated data. In-app, one tap: <span class="mono">Settings → Account → Delete account</span>. For website-waitlist deletion, email <a href="mailto:contact@altivra.io">contact@altivra.io</a>.</li>
+    <li><strong>Export</strong> — download your logbook (CSV, PDF), roster, pay history, and fatigue log at any time from within the app.</li>
+    <li><strong>Correct</strong> — edit any data directly through the app.</li>
+    <li><strong>Object / restrict</strong> — if you're in a jurisdiction that grants these rights (EU/UK GDPR, California CCPA, etc.), contact us and we'll honor your request within 30 days.</li>
+  </ul>
+
+  <h2><span class="num">08</span><span>Cookies</span></h2>
+  <p>
+    The <strong>website</strong> uses only functional storage (no tracking cookies, no analytics cookies). The <strong>iPad app</strong> uses no cookies — it uses Apple's native secure storage.
+  </p>
+
+  <h2><span class="num">09</span><span>Children's privacy</span></h2>
+  <p>
+    Altivra is intended for commercial pilots, who are adults by professional requirement. We don't knowingly collect data from anyone under 18. If we learn we've accidentally collected such data, we'll delete it immediately. Parents or guardians who believe we've collected data about their child can email <a href="mailto:legal@altivra.io">legal@altivra.io</a>.
+  </p>
+
+  <h2><span class="num">10</span><span>Changes to this policy</span></h2>
+  <p>
+    If we make material changes to this policy, we'll notify you by email (for account holders) or in-app announcement at least 30 days before the changes take effect. The most recent version is always live at <a href="https://www.altivra.app/privacy">altivra.app/privacy</a>.
+  </p>
+
+  <h2><span class="num">11</span><span>Contact</span></h2>
+  <p>
+    Questions about this policy, or requests to access, correct, or delete your data:
+  </p>
+  <ul>
+    <li><strong>Privacy &amp; data requests</strong>: <a href="mailto:legal@altivra.io">legal@altivra.io</a></li>
+    <li><strong>General support</strong>: <a href="mailto:support@altivra.io">support@altivra.io</a></li>
+    <li><strong>Contact</strong>: <a href="mailto:contact@altivra.io">contact@altivra.io</a></li>
+  </ul>
+
+  <div class="callout">
+    <strong>One honest note.</strong> This policy is written in plain language on purpose — legal documents that nobody reads protect nobody. If anything here is unclear, ambiguous, or feels like it's hiding something, please email <a href="mailto:legal@altivra.io">legal@altivra.io</a> and we'll clarify.
+  </div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bar">
+      <div>© 2026 Altivra · <span class="mono">altivra.app</span></div>
+      <div>
+        <a href="/">Home</a> ·
+        <a href="/privacy">Privacy</a> ·
+        <a href="/terms">Terms</a> ·
+        <a href="mailto:legal@altivra.io">legal@altivra.io</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

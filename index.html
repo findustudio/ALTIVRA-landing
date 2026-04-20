@@ -687,6 +687,8 @@
     }
 
     /* ═══  PRICING  ═══ */
+    .founding-counter.visible { opacity: 1 !important; }
+
     .founding-ribbon {
       max-width: 1120px;
       margin: 0 auto 44px;
@@ -1438,6 +1440,9 @@
           <span class="founding-badge-inline">FOUNDING 500 · LIMITED</span>
           <h3>First 500 pilots lock in <strong>$59/year for life</strong><sup style="color:var(--sky-bright);font-size:0.6em;margin-left:2px;">*</sup></h3>
           <p>Founding Pilot badge, early access to Captain features, quarterly roadmap voting. Once claimed, the rate never moves.</p>
+          <p class="founding-counter" style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:var(--sky-bright);opacity:0;transition:opacity .6s ease;">
+            <span id="founding-count">—</span> / 500 seats claimed · <span id="founding-remaining">—</span> remaining
+          </p>
           <p class="founding-disclaimer" style="margin-top:10px;font-size:12px;color:var(--muted);line-height:1.5;">
             <span style="color:var(--sky-bright);">*</span> Applies to the PIC tier while subscription remains active.
           </p>
@@ -1717,11 +1722,13 @@
 </footer>
 
 <script type="module">
-  // ═══  FIREBASE — waitlist capture  ═══
+  // ═══  FIREBASE — waitlist capture + app check  ═══
   import { initializeApp }
     from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp }
+  import { getFirestore, collection, addDoc, doc, getDoc, serverTimestamp }
     from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+  import { initializeAppCheck, ReCaptchaV3Provider }
+    from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app-check.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyClCmUBwlhOWWi1y3CvsLocxeYryrC12Vo",
@@ -1733,7 +1740,34 @@
   };
 
   const app = initializeApp(firebaseConfig);
+
+  // App Check — invisible bot protection for all Firebase calls from this page.
+  // Uses reCAPTCHA v3 (score-based, no user interaction required).
+  initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider('6LeWmcEsAAAAAKK9WeLHb0rcljjuDcqysq643wCJ'),
+    isTokenAutoRefreshEnabled: true
+  });
+
   const db = getFirestore(app);
+
+  // ═══  Founding 500 public counter  ═══
+  const loadFoundingCounter = async () => {
+    try {
+      const statsRef  = doc(db, 'stats', 'waitlist');
+      const statsSnap = await getDoc(statsRef);
+      if (!statsSnap.exists()) return;
+      const count = statsSnap.data().count || 0;
+      const countEl = document.getElementById('founding-count');
+      const remEl   = document.getElementById('founding-remaining');
+      if (countEl) countEl.textContent = count;
+      if (remEl)   remEl.textContent   = Math.max(0, 500 - count);
+      document.querySelectorAll('.founding-counter').forEach(el => el.classList.add('visible'));
+    } catch (err) {
+      // Silent — counter is a nice-to-have, never blocks the page
+      console.warn('Counter read failed:', err);
+    }
+  };
+  loadFoundingCounter();
 
   // ═══  NAV scroll effect  ═══
   const nav = document.getElementById('nav');

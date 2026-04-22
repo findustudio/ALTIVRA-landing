@@ -795,6 +795,39 @@
       box-shadow: 0 4px 16px rgba(47,128,237,0.45);
       white-space: nowrap;
     }
+    /* Coming soon variant — used for Captain tier pre-launch.
+       Dimmer, gold-accented, no hover lift, no purchase CTA. */
+    .price-card.coming-soon {
+      border: 1px dashed rgba(212,160,23,0.55);
+      background: linear-gradient(180deg, rgba(212,160,23,0.08) 0%, rgba(20,38,60,0.2) 100%);
+      opacity: 0.78;
+      box-shadow: none;
+      transform: none;
+    }
+    .price-card.coming-soon:hover {
+      border-color: rgba(212,160,23,0.7);
+      transform: none;
+    }
+    .founding-badge.coming-soon {
+      background: linear-gradient(135deg, #D4A017 0%, #E3B341 100%);
+      box-shadow: 0 4px 16px rgba(212,160,23,0.4);
+    }
+    .price-card.coming-soon .price-amount .num,
+    .price-card.coming-soon .price-equiv {
+      color: rgba(244,246,249,0.55);
+    }
+    .price-card.coming-soon .price-cta {
+      pointer-events: none;
+      cursor: default;
+      background: transparent;
+      border: 1px dashed rgba(212,160,23,0.4);
+      color: #D4A017;
+      font-weight: 500;
+    }
+    .price-card.coming-soon .price-cta:hover {
+      background: transparent;
+      color: #D4A017;
+    }
     .price-card h3 {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 22px;
@@ -1268,7 +1301,7 @@
           </svg>
         </div>
         <h3>Wingman</h3>
-        <p>Smart roster that auto-imports from any airline system. Duty, rest, and block hours at a glance. An AI copilot that understands your schedule <span style="color:var(--sky-bright);">— Captain tier</span>.</p>
+        <p>Smart roster that auto-imports from any airline system. Duty, rest, and block hours at a glance. An AI copilot that understands your schedule <span style="color:#D4A017;">— Captain tier, v1.1</span>.</p>
       </article>
 
       <article class="feature reveal">
@@ -1295,7 +1328,7 @@
           </svg>
         </div>
         <h3>Digital Logbook</h3>
-        <p>Every flight, every hour, every airport — visualized on a world map. CSV import from anything. PDF export that looks official. <span style="color:var(--sky-bright);">FlightAware auto-enrichment on Captain tier.</span></p>
+        <p>Every flight, every hour, every airport — visualized on a world map. CSV import from anything. PDF export that looks official. <span style="color:#D4A017;">FlightAware auto-enrichment arrives with Captain tier in v1.1.</span></p>
       </article>
 
       <article class="feature reveal">
@@ -1429,7 +1462,7 @@
       <span class="eyebrow">Pricing</span>
       <h2 class="section-title"><span class="display-gradient">Honest pricing.</span><br/><span class="accent">Founding loyalty rewarded.</span></h2>
       <p class="section-lede">
-        An Aviator tier that's genuinely useful, free forever. A PIC tier priced under a single sim session. A Captain tier for pilots who want the AI onboard. And a reward for the pilots who believed first.
+        An Aviator tier that's genuinely useful, free forever. A PIC tier priced under a single sim session. A Captain tier arriving in v1.1 when AI and FlightAware are ready. And a reward for the pilots who believed first.
       </p>
     </div>
 
@@ -1495,31 +1528,31 @@
         <a href="#waitlist" class="price-cta cta-ghost">Request PIC beta</a>
       </div>
 
-      <!-- Captain (featured, the premium AI tier) -->
-      <div class="price-card featured reveal">
-        <div class="founding-badge">CAPTAIN · FULL AI</div>
+      <!-- Captain (coming soon — deferred to v1.1) -->
+      <div class="price-card coming-soon reveal">
+        <div class="founding-badge coming-soon">COMING SOON · v1.1</div>
         <h3>Captain</h3>
         <p class="tagline">The full flight deck. AI and FlightAware onboard.</p>
         <div class="price-amount">
           <span class="num"><span class="cur">$</span>129</span>
           <span class="unit">/ year</span>
         </div>
-        <div class="price-equiv">~$10.75 / month · Captain-only features included</div>
+        <div class="price-equiv">Arrives in a future update · Join the waitlist to be first</div>
         <ul class="price-features">
           <li><strong>Everything in PIC</strong></li>
           <li>FlightAware · auto-enrich every flight</li>
-          <li>AI Copilot in Wingman · <strong>unlimited</strong> queries <span class="mono" style="color:var(--sky-bright);font-size:11px;">SOON</span></li>
-          <li>AI fatigue recovery planning <span class="mono" style="color:var(--sky-bright);font-size:11px;">SOON</span></li>
-          <li>AI pay claim drafting <span class="mono" style="color:var(--sky-bright);font-size:11px;">SOON</span></li>
+          <li>AI Copilot in Wingman · <strong>unlimited</strong> queries</li>
+          <li>AI fatigue recovery planning</li>
+          <li>AI pay claim drafting</li>
           <li>Deep roster optimization</li>
           <li>Priority Captain support channel</li>
         </ul>
-        <a href="#waitlist" class="price-cta cta-primary">Request Captain beta</a>
+        <a class="price-cta" aria-disabled="true">Captain launches with v1.1</a>
       </div>
     </div>
 
     <p class="founding-footnote reveal">
-      <span class="mono star">★</span> <strong>Captain tier launches alongside the AI Copilot rollout.</strong> Founding 500 members get early access to Captain features as they ship, and can upgrade to Captain at any time by paying the tier difference — their Founding PIC rate stays locked regardless.
+      <span class="mono star">★</span> <strong>Captain tier ships with Altivra v1.1.</strong> The AI Copilot and FlightAware auto-enrichment need a secure, cost-protected server-side rollout before we're comfortable putting them behind a paywall. Founding 500 members get early access the moment Captain ships — and can upgrade to Captain by paying the tier difference; their Founding PIC rate stays locked regardless.
     </p>
 
     <p class="founding-footnote reveal mono" style="margin-top:18px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;">
@@ -1578,8 +1611,8 @@
       <details class="faq-item reveal">
         <summary>What's the difference between PIC and Captain?</summary>
         <div class="faq-body">
-          <p style="margin-bottom:14px;"><strong>PIC</strong> ($89/yr) is the core tier for a working pilot: unlimited logbook, auto roster import, FRMS fatigue engine, Briefing Room, pay verification, iPhone companion, priority support. If you want a single app that replaces your paper logbook, spreadsheet-based fatigue tracker, and DIY pay calculator — PIC is it.</p>
-          <p><strong>Captain</strong> ($129/yr) is everything in PIC plus the two costliest-but-highest-value features: <strong>FlightAware auto-enrichment</strong> (real routing, actual block times, gate/terminal info on every flight) and the <strong>AI Copilot</strong> in Wingman — a Claude-powered assistant that understands your roster, logbook, and rest data together. Captain is priced to reflect the real per-flight and per-query costs of those premium services.</p>
+          <p style="margin-bottom:14px;"><strong>PIC</strong> ($89/yr) is the core tier for a working pilot: unlimited logbook, auto roster import, FRMS fatigue engine, Briefing Room, pay verification, iPhone companion, priority support. If you want a single app that replaces your paper logbook, spreadsheet-based fatigue tracker, and DIY pay calculator — PIC is it. <strong>PIC is what launches with v1.0.</strong></p>
+          <p><strong>Captain</strong> ($129/yr) adds the two costliest-but-highest-value features: <strong>FlightAware auto-enrichment</strong> (real routing, actual block times, gate/terminal info on every flight) and the <strong>AI Copilot</strong> in Wingman — a Claude-powered assistant that understands your roster, logbook, and rest data together. <strong>Captain ships with v1.1</strong> — we deliberately deferred it so the AI and FlightAware proxy roll out with proper cost protection and server-side security, not as half-finished features. If you want Captain, join the waitlist and we'll notify you the moment it's available.</p>
         </div>
       </details>
 
@@ -1588,7 +1621,7 @@
         <div class="faq-body">
           <p style="margin-bottom:14px;">The first 500 pilots who subscribe during the private beta lock in <strong>$59/year for the PIC tier</strong> — for as long as they stay subscribed. Even when public PIC pricing rises after launch (and higher as the app matures), your $59 PIC rate never moves.</p>
           <p style="margin-bottom:14px;"><strong>To be fully transparent:</strong> your lock-in is specifically for the PIC tier. Every new feature that ships <em>inside</em> PIC — new reports, platform improvements, tier-internal enhancements — arrives at your Founding rate at no extra cost.</p>
-          <p>The Captain tier is a separate, higher subscription ($129/yr) that includes FlightAware enrichment and the full AI Copilot. If you ever want Captain, you can upgrade at any time by paying the tier difference, and your PIC rate stays locked. Founding 500 members also get early access to Captain features as they ship.</p>
+          <p>The Captain tier is a separate, higher subscription ($129/yr) arriving in v1.1 that adds FlightAware enrichment and the full AI Copilot. If you ever want Captain, you can upgrade at any time by paying the tier difference, and your PIC rate stays locked. Founding 500 members get early access the moment Captain ships.</p>
         </div>
       </details>
 
@@ -1634,17 +1667,17 @@
 
       <details class="faq-item reveal">
         <summary>What are the limits on the Aviator (free) tier?</summary>
-        <div class="faq-body">Aviator lets you try the deck, not live on it. You can log up to 50 flights, view your roster in read-only mode, see basic career stats, browse the world airport map, and ask 3 AI Copilot queries per month. PDF exports are watermarked. There's no trial clock — take as long as you want. When you're ready for auto-roster, FRMS fatigue, and pay verification, PIC is one tap away. When you want FlightAware enrichment and the full AI Copilot, Captain is the upgrade path.</div>
+        <div class="faq-body">Aviator lets you try the deck, not live on it. You can log up to 50 flights, view your roster in read-only mode, see basic career stats, browse the world airport map, and ask 3 AI Copilot queries per month. PDF exports are watermarked. There's no trial clock — take as long as you want. When you're ready for auto-roster, FRMS fatigue, and pay verification, PIC is one tap away. FlightAware enrichment and the full AI Copilot arrive in v1.1 with the Captain tier.</div>
       </details>
 
       <details class="faq-item reveal">
         <summary>What is the AI Copilot in Wingman?</summary>
-        <div class="faq-body">An AI assistant, powered by Claude, that understands your roster, logbook, and rest data together. Ask questions in plain English — "when's my next long-haul?", "how many layovers in Tokyo this quarter?", "do I have enough rest for the LHR pairing?" — and get instant answers. It's a <strong>Captain-tier</strong> feature arriving in 2026. Aviator and PIC get 3 sample queries per month; Captain gets unlimited. Founding 500 pilots get early access.</div>
+        <div class="faq-body">An AI assistant, powered by Claude, that understands your roster, logbook, and rest data together. Ask questions in plain English — "when's my next long-haul?", "how many layovers in Tokyo this quarter?", "do I have enough rest for the LHR pairing?" — and get instant answers. It's a <strong>Captain-tier</strong> feature arriving in Altivra v1.1. Aviator and PIC get 3 sample queries per month at launch; Captain gets unlimited when it ships. Founding 500 pilots get early access.</div>
       </details>
 
       <details class="faq-item reveal">
         <summary>How does FlightAware enrichment work?</summary>
-        <div class="faq-body">Every flight you log is automatically matched against FlightAware's real-time flight data — actual routing, gate and terminal assignments, real block times, diversions. You don't have to enter anything manually beyond the flight number and date. The enrichment runs server-side so your iPad isn't making API calls. It's a <strong>Captain-tier</strong> feature (the per-flight API cost is why it lives in the premium tier).</div>
+        <div class="faq-body">Every flight you log is automatically matched against FlightAware's real-time flight data — actual routing, gate and terminal assignments, real block times, diversions. You don't have to enter anything manually beyond the flight number and date. The enrichment runs server-side so your iPad isn't making API calls. It's a <strong>Captain-tier</strong> feature arriving in Altivra v1.1 (the per-flight API cost is why it lives in the premium tier — we wanted the server-side cost controls rock-solid before charging for it).</div>
       </details>
 
       <details class="faq-item reveal">

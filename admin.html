@@ -240,11 +240,7 @@
     <div class="stats">
       <div class="stat featured">
         <div class="stat-value" id="stat-count">—</div>
-        <div class="stat-label">Founding 500 · Claimed</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value" id="stat-remaining">—</div>
-        <div class="stat-label">Seats Remaining</div>
+        <div class="stat-label">Total signups</div>
       </div>
       <div class="stat">
         <div class="stat-value" id="stat-recent">—</div>
@@ -302,7 +298,6 @@
   const pwInput     = document.getElementById('pw');
   const refreshBtn  = document.getElementById('refresh-btn');
   const statCount   = document.getElementById('stat-count');
-  const statRem     = document.getElementById('stat-remaining');
   const statRecent  = document.getElementById('stat-recent');
   const entries     = document.getElementById('entries');
 
@@ -355,7 +350,6 @@
     try {
       const { data } = await adminGetWaitlist({ password: cachedPassword });
       statCount.textContent  = data.count;
-      statRem.textContent    = Math.max(0, 500 - data.count);
       statRecent.textContent = data.entries.length;
       renderEntries(data.entries);
       return true;
